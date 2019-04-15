@@ -2,13 +2,20 @@ import boto3, os, subprocess
 from boto3.session import Session
 
 def connect_to_aws():
-	access_key_command = subprocess.Popen("cat ~/.aws/credentials | awk -F' ' 'FNR == 2 {print $3}'", shell=True, stdout=subprocess.PIPE)
+	access_key_command = subprocess.Popen("cat ~/.aws/credentials | awk -F' ' 'FNR == 2 {print $3}'",
+					      shell=True,
+					      stdout=subprocess.PIPE)
+
+	secret_key_command = subprocess.Popen("cat ~/.aws/credentials | awk -F' ' 'FNR == 3 {print $3}'",
+					      shell=True,
+					      stdout=subprocess.PIPE)
+
+	region_command = subprocess.Popen("cat ~/.aws/config | awk -F' ' 'FNR == 2 {print $3}'",
+					  shell=True,
+					  stdout=subprocess.PIPE)
+
 	access_key = access_key_command.communicate()[0].splitlines()[0]
-
-	secret_key_command = subprocess.Popen("cat ~/.aws/credentials | awk -F' ' 'FNR == 3 {print $3}'", shell=True, stdout=subprocess.PIPE)
 	secret_key = secret_key_command.communicate()[0].splitlines()[0]
-
-	region_command = subprocess.Popen("cat ~/.aws/config | awk -F' ' 'FNR == 2 {print $3}'", shell=True, stdout=subprocess.PIPE)
 	region = region_command.communicate()[0].splitlines()[0]
 
 	global session
