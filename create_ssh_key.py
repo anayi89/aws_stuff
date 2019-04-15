@@ -53,9 +53,10 @@ def save_ssh_key():
 	key_file.close()
 
 def verify_ssh_key():
+	subprocess.Popen(['echo', 'Your AWS key:'])
 	ssh_key = ec2_client.describe_key_pairs(KeyNames=['{}'.format(key_name)])
 	print ssh_key
-	subprocess.Popen(['echo', 'Your key is located here:'])
+	subprocess.Popen(['echo', 'Your local key:'])
 	subprocess.Popen(['ls', '-R','{}'.format(key_filepath)])
 
 def main():
