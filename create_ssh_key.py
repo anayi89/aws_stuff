@@ -36,7 +36,9 @@ def create_hidden_dir():
 
 	my_name = os.getlogin()
 	key_filepath = '/home/{}/.aws_keys'.format(my_name)
-	subprocess.Popen('mkdir {}'.format(key_filepath), shell=True, stdout=subprocess.PIPE)
+	subprocess.Popen('mkdir {}'.format(key_filepath),
+			 shell=True,
+			 stdout=subprocess.PIPE)
 
 def create_ssh_key():
 	global key_name, local_key
