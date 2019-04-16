@@ -19,9 +19,9 @@ def is_aws_installed():
 def connect_to_aws():
     global ec2_resource, ec2_client, my_name, session
 
-    access_key_loc = '\\.aws\\credentials)[4]'
-    secret_key_loc = '\\.aws\\credentials)[5]'
-    region_loc = '\\.aws\\config)[3]'
+    access_key_loc = '\\.aws\\credentials)[1]'
+    secret_key_loc = '\\.aws\\credentials)[2]'
+    region_loc = '\\.aws\\config)[1]'
 
     command1 = '(Get-Content C:\\Users\\'
     command2 = ' | %{$_.Split("= ")[3];}'
